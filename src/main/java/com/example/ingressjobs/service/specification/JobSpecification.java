@@ -24,8 +24,12 @@ public class JobSpecification implements Specification<JobEntity> {
                         title -> cb.like(root.get(CriteriaConstants.TITLE),applyLikePattern(title)))
                 .addNullSafety(jobCriteria.getCompanyName(),
                         companyName -> cb.like(root.get(CriteriaConstants.COMPANY_NAME),applyLikePattern(companyName)))
+                .addNullSafety(jobCriteria.getJobType(),
+                        jobType -> cb.like(root.get(CriteriaConstants.JOB_TYPE),applyLikePattern(jobType))
+                        )
+                .addNullSafety(jobCriteria.getLocation(),
+                        location -> cb.like(root.get(CriteriaConstants.LOCATION),applyLikePattern(location)))
                 .build();
-
 
         return cb.and(predicates);
     }

@@ -11,5 +11,7 @@ import lombok.ToString;
 public class JobCriteria {
     private String title;
     private String companyName;
+    private String jobType;
+    private String location;
 
 }

@@ -21,6 +21,7 @@ import lombok.ToString;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import static jakarta.persistence.CascadeType.MERGE;
 import static jakarta.persistence.CascadeType.PERSIST;
@@ -53,5 +54,14 @@ public class JobEntity {
     private String companyLogoUrl;
     private String sourceUrl;
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof JobEntity jobEntity)) return false;
+        return Objects.equals(id, jobEntity.id);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

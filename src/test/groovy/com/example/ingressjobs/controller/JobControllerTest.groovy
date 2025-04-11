@@ -13,7 +13,7 @@ import spock.lang.Specification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
-class JobControllerTest extends Specification{
+class JobControllerTest extends Specification {
 
     EnhancedRandom random = EnhancedRandomBuilder.aNewEnhancedRandom()
 
@@ -31,24 +31,30 @@ class JobControllerTest extends Specification{
 
     def "TestGetAllJobs"() {
         given:
+        def sortBy = "postedDate"
+        def order = "asc"
         def pageCriteria = random.nextObject(PageCriteria)
         def jobCriteria = random.nextObject(JobCriteria)
         def url = "/v1/jobs"
 
         when:
-        def result = mockMvc
+          mockMvc
                 .perform(get(url)
                         .contentType(MediaType.APPLICATION_JSON)
+                        .param("sortBy", sortBy)
+                        .param("order", order)
                         .param("page", pageCriteria.page.toString())
                         .param("count", pageCriteria.count.toString())
                         .param("title", jobCriteria.title)
-                        .param("companyName", jobCriteria.companyName))
+                        .param("companyName", jobCriteria.companyName)
+                        .param("jobType",jobCriteria.jobType)
+                        .param("location",jobCriteria.location)
+                )
                 .andReturn()
 
         then:
-        1 * jobService.getAllJobs(pageCriteria, jobCriteria)
+        1 * jobService.getAllJobs(sortBy, order, pageCriteria, jobCriteria)
     }
-
 
 
 }

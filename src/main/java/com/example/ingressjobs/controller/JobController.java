@@ -8,6 +8,7 @@ import com.example.ingressjobs.service.abstraction.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,7 +18,11 @@ public class JobController {
     private final JobService jobService;
 
     @GetMapping
-    public PageableResponse<JobResponse> getAllJobs(PageCriteria pageCriteria, JobCriteria jobCriteria){
-        return jobService.getAllJobs(pageCriteria,jobCriteria);
+    public PageableResponse<JobResponse> getAllJobs(
+            @RequestParam(defaultValue = "postedDate") String sortBy,
+            @RequestParam(defaultValue = "asc") String order,
+            PageCriteria pageCriteria,
+            JobCriteria jobCriteria) {
+        return jobService.getAllJobs(sortBy, order, pageCriteria, jobCriteria);
     }
 }

@@ -27,14 +27,14 @@ public enum JobMapper {
                 .build();
     }
 
-    public PageableResponse<JobResponse> pageableBookResponse(Page<JobEntity> jobEntityPage) {
+    public PageableResponse<JobResponse> pageableJobResponse(Page<JobEntity> jobEntityPage) {
         return PageableResponse.<JobResponse>builder()
                 .list((jobEntityPage.map(this::buildJobResponse).toList()))
                 .currentPageNumber(jobEntityPage.getNumber())
                 .totalPages(jobEntityPage.getTotalPages())
                 .totalElements(jobEntityPage.getTotalElements())
                 .numberOfElements(jobEntityPage.getNumberOfElements())
-                .hasNextPage(jobEntityPage.getNumber() < (jobEntityPage.getTotalPages() - 1))
+                .hasNextPage(jobEntityPage.hasNext())
                 .build();
     }
 }

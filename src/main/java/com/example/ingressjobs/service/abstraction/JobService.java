@@ -6,5 +6,5 @@ import com.example.ingressjobs.model.response.JobResponse;
 import com.example.ingressjobs.model.response.PageableResponse;
 
 public interface JobService {
-    PageableResponse<JobResponse> getAllJobs(PageCriteria pageCriteria, JobCriteria jobCriteria);
+    PageableResponse<JobResponse> getAllJobs(String sortBy,String order ,PageCriteria pageCriteria, JobCriteria jobCriteria);
 }
