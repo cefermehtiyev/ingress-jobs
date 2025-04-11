@@ -1,5 +1,6 @@
 package com.example.ingressjobs.service.concurate;
 
+import com.example.ingressjobs.annotation.Log;
 import com.example.ingressjobs.criteria.JobCriteria;
 import com.example.ingressjobs.criteria.PageCriteria;
 import com.example.ingressjobs.dao.repository.JobRepository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import static com.example.ingressjobs.mapper.JobMapper.JOB_MAPPER;
 
+@Log
 @Service
 @RequiredArgsConstructor
 public class JobServiceHandler implements JobService {

@@ -1,5 +1,6 @@
 package com.example.ingressjobs.service.concurate;
 
+import com.example.ingressjobs.annotation.Log;
 import com.example.ingressjobs.dao.entity.JobEntity;
 import com.example.ingressjobs.dao.repository.JobRepository;
 import com.example.ingressjobs.exception.ErrorMessage;
@@ -26,7 +27,7 @@ import static com.example.ingressjobs.model.constants.LoginConstants.LOGIN_POST_
 import static com.example.ingressjobs.model.constants.LoginConstants.LOGIN_URL;
 import static com.example.ingressjobs.model.constants.LoginConstants.USER_EMAIL;
 import static com.example.ingressjobs.model.constants.LoginConstants.USER_PASSWORD;
-
+@Log
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -43,6 +44,7 @@ public class ScraperServiceHandler implements ScraperService {
 
         int pageCount = 0;
         while (true) {
+
             pageCount++;
             String url = "https://djinni.co/jobs/?primary_keyword=Java&employment=remote&page=" + pageCount;
             System.out.println("Fetching: " + url);
@@ -128,6 +130,11 @@ public class ScraperServiceHandler implements ScraperService {
             if (!jobEntities.isEmpty()) {
                 jobRepository.saveAll(jobEntities);
             }
+
+            if (pageCount >8){
+                break;
+            }
+
         }
     }
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ScraperController {
     private final ScraperService scraperService;
 
-    @PostMapping("/scrape-jobs")
+    @PostMapping("/scrape")
     public void scrapeJobs() {
         scraperService.scrapeAndSaveJobs();
     }
