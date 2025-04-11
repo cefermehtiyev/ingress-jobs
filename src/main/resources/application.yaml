@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:1111/job_db
+    username: postgres
+    password: j@vacefer2005
+  jpa:
+    open-in-view: true
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yaml

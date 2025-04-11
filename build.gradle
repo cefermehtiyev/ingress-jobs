@@ -1,15 +1,21 @@
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.4.4'
-    id 'io.spring.dependency-management' version '1.1.7'
+    id "java"
+    id "groovy"
+    id "org.springframework.boot" version "$springBootVersion"
+    id "io.spring.dependency-management" version "$dependencyManagementVersion"
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+group = "az.ingress"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
     }
 }
 
@@ -18,11 +24,62 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+
+    // Spring Boot
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-validation"
+
+
+
+
+
+    compileOnly "org.projectlombok:lombok:$lombok"
+    annotationProcessor "org.projectlombok:lombok:$lombok"
+
+    // Swagger (OpenAPI 2.3.x)
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApiVersion"
+    implementation 'org.jsoup:jsoup:1.16.1'
+
+
+
+    // Groovy
+    testImplementation "org.apache.groovy:groovy:$groovyVersion"
+
+    // Spock Core (Əsas Spock Testing Framework)
+    testImplementation "org.spockframework:spock-core:$spockSpringVersion"
+
+    // Spock Spring (Spring Boot Testləri üçün)
+    testImplementation "org.spockframework:spock-spring:$spockSpringVersion"
+
+    // JUnit Platform (Spock üçün lazımdır)
+    testImplementation "org.junit.platform:junit-platform-launcher"
+
+    // Random Beans (Random test obyektləri yaratmaq üçün)
+    testImplementation "io.github.benas:random-beans:$randomBeansVersion"
+
+    // Spring Boot Test
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.6'
+
+
+    // OpenFeign
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:$openFeign"
+
+
+    // ShedLock (Task Scheduling üçün)
+    implementation "net.javacrumbs.shedlock:shedlock-spring:$shedlockVersion"
+    implementation "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:$shedlockVersion"
+
+
+    // Database
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.liquibase:liquibase-core"
+    runtimeOnly "org.postgresql:postgresql"
+
+
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }

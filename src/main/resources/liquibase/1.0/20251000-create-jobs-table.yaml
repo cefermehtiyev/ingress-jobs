@@ -1,0 +1,91 @@
+databaseChangeLog:
+  - changeSet:
+      id: create jobs table
+      author: Cefer Mehtiyev
+      changes:
+        - createTable:
+            tableName: jobs
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: true
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: company_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: location
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: job_type
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: salary_range
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: description
+                  type: TEXT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: requirements
+                  type: TEXT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: experience_level
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: education_level
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: apply_method
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: industry
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: posted_date
+                  type: DATE
+                  constraints:
+                    nullable: true
+              - column:
+                  name: benefit_text
+                  type: TEXT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: company_logo_url
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: source_url
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+
