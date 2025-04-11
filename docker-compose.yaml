@@ -1,0 +1,29 @@
+
+services:
+  postgres:
+    container_name: postgres_djinni
+    image: "postgres:17.4"
+    environment:
+      POSTGRES_DB: job_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: j@vacefer2005
+    ports:
+      - "1111:5432"
+    volumes:
+      - job_db:/var/lib/postgresql/data
+
+
+  adminer:
+    image: adminer:4.8.1
+    ports:
+      - '1258:8080'
+
+
+
+
+volumes:
+  job_db:
+
+
+
+
